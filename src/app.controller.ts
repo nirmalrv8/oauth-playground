@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, InternalServerErrorException, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
 
@@ -8,21 +8,37 @@ export class AppController {
 
   @Get('/login')
   loginToGoogle(@Req() request, @Res() response): void {
-    this.appService.loginToGoogle(request, response);
+    try {
+      this.appService.loginToGoogle(request, response);
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   @Get('oauth2-callback')
   oAuth2Callback(@Req() request, @Res() response: Response) {
-    this.appService.oAuth2Callback(request, response);
+    try {
+      this.appService.oAuth2Callback(request, response);
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   @Get('/get-personal-details')
   getPersonalDetails() {
-    return this.appService.getPersonalDetails();
+    try {
+      return this.appService.getPersonalDetails();
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 
   @Get('/get-drive-files')
   getDriveFiles() {
-    return this.appService.getDriveFiles();
+    try {
+      return this.appService.getDriveFiles();
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
   }
 }
