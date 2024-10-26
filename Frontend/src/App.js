@@ -2,21 +2,19 @@ import React from 'react';
 import {
   Box,
   Button,
-  Dialog,
-  DialogContent,
   Divider,
   TextField,
   Typography,
   IconButton,
 } from '@mui/material';
 
-const AuthModal = ({ onClose }) => {
-  const open = true;
-
+const AuthModal = () => {
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogContent sx={{ padding: '32px' }}>
-
+    <Box
+      sx={{ width: '100vw', height: '100vh', background: 'linear-gradient(120deg, #4b9a8f, #5a8db6)',
+        display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+    >
+      <Box sx={{ width: '600px', padding: '30px', backgroundColor: 'white', borderRadius: '20px', boxShadow: 3 }}>
         {/* <IconButton onClick={onClose}><CloseIcon /></IconButton> */}
 
         {/* Title */}
@@ -119,9 +117,8 @@ const AuthModal = ({ onClose }) => {
             &copy; 2022 yourwebsite.com
           </Typography>
         </Box> */}
-
-      </DialogContent>
-    </Dialog>
+      </Box>
+    </Box>
   );
 };
 
